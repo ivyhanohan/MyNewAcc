@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal information</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div>
+        <h1>PERSONAL INFORMATION</h1>
+    <form id="infoForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name"><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age"><br><br>
+
+        <label for="hobbies">Hobbies:</label>
+        <input type="text" id="hobbies"><br><br>
+
+        <label for="student">Are you studying?</label>
+        <input type="checkbox" id="student"><br><br>
+
+        <button type="submit">Submit</button>
+        
+
+    
+    
+    </form>
+
+    <h2>Summary</h2>
+    <p id="summary"></p>
+    <button id="delete">delete</button>
+    <button id="edit-todo-btn">edit</button>
+    
+    </div>
+
+    <script>
+        document.getElementById('infoForm').addEventListener('submit',function(event){
+            event.preventDefault();
+
+            let name = document.getElementById('name').value;
+            let age = Number(document.getElementById('age').value);
+            let hobbies = document.getElementById('hobbies').value.split(',');
+            let isStudent = document.getElementById('student').checked;
+
+            let summary = `<p>Name: ${name}<br>Age: ${age}<br>hobbies: ${hobbies.join(",")}<br> student: ${isStudent ? 'yes': 'no'}</p>`;
+            document.getElementById('summary').innerHTML += summary;
+            const deleteBtn = document.createElement('button');
+            
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', () => {
+      deleteTodo(index);
+    });
+
+    
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.classList.add('edit-btn');
+    editBtn.addEventListener('click', () => {
+      editTodo(index);
+    });
+
+        });
+        li.appendChild(deleteBtn);
+    li.appendChild(editBtn);
+
+  
+    li.addEventListener('click', () => {
+      toggleCompleted(index);
+    });
+
+    todoList.appendChild(li);
+function deleteTodo(index) {
+  todos.splice(index, 1);
+  renderTodoList();
+}
+
+function editTodo(index) {
+  const newTodoText = prompt('Enter new todo text:');
+  if (newTodoText !== null) {
+    todos[index].text = newTodoText;
+    renderTodoList();
+  }
+}
+
+
+  
+
+
+    </script>
+</body>
+</html>
